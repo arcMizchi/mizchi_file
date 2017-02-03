@@ -1,0 +1,23 @@
+#!/bin/bash
+##########################################################################################
+#
+# This program can set administrator's mail address.
+#
+##########################################################################################
+
+echo "Setting administrator's address"
+echo "Do you show a list about administrator's address now?:"
+read ans
+
+size=`wc -c ../config/adm_adr | awk '{print $1}'`
+if [ size == 0 ] ;then
+	echo "Oops. Nothing is set for administorator's address"
+elif [ ans == "yes" or "y" ] ;then
+	echo "OK. Showing list..."
+	cat ../config/adm_adr
+fi
+
+echo "Please input email address for adding adm_adr:"
+read rec
+echo ${rec} >> ../config/adm_adr
+echo "Finished adding step..."

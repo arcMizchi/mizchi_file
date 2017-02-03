@@ -1,0 +1,29 @@
+#!/bin/bash
+################################################################
+#
+# Report user's trouble in PC for <host>
+#
+###############################################################
+
+# ユーザー名取得
+user=`whoami`
+host=`cat ../config/host`
+
+# 送信先,送信元設定
+log=${host}:/home/report/message
+sender=./send_log
+
+# メール送信先
+admin_adr=`cat ../config/adm_adr`
+
+record ${sender}
+
+# レポートの送信
+echo "Please enter your password"
+cat ${sender} | ssh ${host} "cat >> ${log}"
+
+# メールを管理者に送信
+subject="Report zeus trouble from ${user}"
+mail ${admin_adr} -s "${subject}" < ${sender}
+
+rm ./send_log

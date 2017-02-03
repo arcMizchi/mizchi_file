@@ -1,0 +1,20 @@
+#!/bin/bash
+########################################################################
+#
+# Setup for using report shell.
+#
+########################################################################
+
+cd /home/report/config
+echo "Report program is starting setup..."
+echo `date`+" Report program is set up" >> ../log/message
+
+if [ !-e admins ] ;then
+    echo `whoami` >> admins
+    echo `date` "Adding asmins user" >> ../log/message
+fi
+
+echo "What's adm's address?:"
+read adm_adr
+echo ${adm_adr} >> ../configure/adm_adr
+echo "Adding asmins address :${adm_adr}" >> ../log/message
