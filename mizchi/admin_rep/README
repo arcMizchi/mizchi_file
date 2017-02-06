@@ -1,0 +1,35 @@
+##################################################################################################
+#
+# This is report system about <host> troubles or bugs. If trouble occurs, PC administrator must
+# report to <host> about that problem.
+# Also in such a case, you reference log for resolve your problem in <host>
+#
+##################################################################################################
+
+1.Overview
+This is a program to record troubles or bugs about <host> PC.
+If trouble occurs, PC administrator must leave a log about that problem and share it with
+your members.
+Message log is recorded in "log/message" and renew every month. Previous log is recorded
+in "log/message<date>" with date. Also, logs of that year is compressed and save it
+collectively to "logs" in year-end. So, PC administrator must organized log files in
+year-end.
+
+## Notes ##
+This program is made on the assumption that files are shared by multiple PCs. So, it cannot be
+used when managing problems on a single PC.
+
+2.Usage
+Clients use "report" shell in each client's PC bin. Notes that client's shell is different from
+administrator's shell.
+Clients can send log about trouble by using "<bin/report>" shell.
+
+[user@host]$ report
+
+If you send log about problems, a mail about it will be sent to administrator.
+Configure of administrator is set by "setup" or "<bin/admin_mail>". Also, you can aset it by
+adding user's email to "<configure/adm_adr>".
+
+2017年  2月  3日 金曜日 14:32:51 JST
+README is made.
+

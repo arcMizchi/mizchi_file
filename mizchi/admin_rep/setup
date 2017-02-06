@@ -1,0 +1,49 @@
+#!/bin/bash
+########################################################################
+#
+# Setup for using report shell for administrator.
+#
+########################################################################
+
+echo "Report program is startting setup for administrator..."
+
+# making config list
+mkdir ./config
+touch ./config/admins ./config/adm_adr
+
+# making log directory
+mkdir ./log
+log=./log/message
+
+function echo_log
+{
+	echo `date` "${@}" >> ${log}
+}
+echo_log "Report program is setup"
+
+# Making reporter list
+if [ ! -e rep_list ] ;then
+    touch ./log/rep_list
+    echo_log "Making rapporteur list"
+fi
+
+# Recording initial admins list
+user=`whoami`
+echo ${user} >> ./config/admins
+echo "Please input admin password for recording"
+echo ${user} | openssl enc -aes-128-cbc -e -base64 -p > ./config/passwd
+
+# Recording initial admin's mail list
+echo "Do you record your mail address as administrator?? yes/no or y/n"
+read ans
+
+if [ ans == "yes" -o ans == "y" ]
+then
+	echo "OK. Please input your mail address:"
+	read adm_adr
+	echo ${adm_adr} >> ./config/adm_adr
+	echo_log "Adding admins address"
+else
+	echo "OK. Aborting record step..."
+	echo_log "Aborting record step..."
+fi

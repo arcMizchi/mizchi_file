@@ -1,0 +1,14 @@
+#!/bin/bash
+#######################################################################
+#
+# Send administlator about bug or trouble. 
+#
+######################################################################
+
+echo "Please send message about trouble"
+echo "subject:"
+read subject
+subject >> ${1}
+
+echo -e "Please explain about trouble. if you finish, write EOF\n"
+cat << EOF >> ${1}
