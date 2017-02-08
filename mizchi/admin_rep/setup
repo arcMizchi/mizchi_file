@@ -7,9 +7,22 @@
 
 echo "Report program is startting setup for administrator..."
 
-# making config list
-mkdir ./config
-touch ./config/admins ./config/adm_adr
+if [ -e ./config/report.lic]
+	echo "!!! ERROR !!!: Setup is executed..."
+	exit 1
+fi
+
+if [ ! -e ./config ]
+then
+	# making config
+	mkdir ./config
+	echo "`date +y+m+d` `whoami`" > report.lic
+fi
+
+if [ ! -e ./config/report.lic ]
+then
+	touch ./config/admins ./config/adm_adr
+fi
 
 # making log directory
 mkdir ./log
